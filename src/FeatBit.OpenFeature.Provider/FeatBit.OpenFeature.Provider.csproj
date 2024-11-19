@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+    <DebugType>portable</DebugType>
+    <AssemblyName>FeatBit.OpenFeature.Provider</AssemblyName>
+    <OutputType>Library</OutputType>
+    <PackageId>FeatBit.OpenFeature.Provider</PackageId>
+    <RootNamespace>FeatBit.OpenFeature.Provider</RootNamespace>
+    <Description>An OpenFeature provider for the FeatBit .NET Server SDK</Description>
+    <Authors>FeatBit</Authors>
+    <Owners>FeatBit</Owners>
+    <Company>FeatBit</Company>
+    <Copyright>Copyright 2024 FeatBit</Copyright>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/featbit/openfeature-provider-dotnet-server</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/featbit/openfeature-provider-dotnet-server</RepositoryUrl>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>NuGet.md</PackageReadmeFile>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PackageTags>featbit feature toggle featuretoggle continuous delivery featuremanagement feature-flags toggling OpenFeature</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1591;</NoWarn>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FeatBit.ServerSdk" Version="1.2.2" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OpenFeature" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>
