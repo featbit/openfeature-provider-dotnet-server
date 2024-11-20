@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 using OpenFeature.Model;
 
-namespace FeatBit.OpenFeature.Provider;
+namespace FeatBit.OpenFeature.ServerProvider;
 
 internal static partial class JsonConversions
 {

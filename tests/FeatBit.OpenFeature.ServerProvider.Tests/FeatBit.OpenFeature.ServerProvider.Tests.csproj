@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FeatBit.OpenFeature.Provider\FeatBit.OpenFeature.Provider.csproj" />
+    <ProjectReference Include="..\..\src\FeatBit.OpenFeature.ServerProvider\FeatBit.OpenFeature.ServerProvider.csproj" />
   </ItemGroup>
 
 </Project>

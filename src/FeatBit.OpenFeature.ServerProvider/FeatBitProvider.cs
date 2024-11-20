@@ -3,7 +3,7 @@
 using OpenFeature;
 using OpenFeature.Model;
 
-namespace FeatBit.OpenFeature.Provider;
+namespace FeatBit.OpenFeature.ServerProvider;
 
 public sealed class FeatBitProvider : FeatureProvider
 {

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
     <DebugType>portable</DebugType>
-    <AssemblyName>FeatBit.OpenFeature.Provider</AssemblyName>
+    <AssemblyName>FeatBit.OpenFeature.ServerProvider</AssemblyName>
     <OutputType>Library</OutputType>
-    <PackageId>FeatBit.OpenFeature.Provider</PackageId>
-    <RootNamespace>FeatBit.OpenFeature.Provider</RootNamespace>
+    <PackageId>FeatBit.OpenFeature.ServerProvider</PackageId>
+    <RootNamespace>FeatBit.OpenFeature.ServerProvider</RootNamespace>
     <Description>An OpenFeature provider for the FeatBit .NET Server SDK</Description>
     <Authors>FeatBit</Authors>
     <Owners>FeatBit</Owners>

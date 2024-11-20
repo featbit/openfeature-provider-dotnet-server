@@ -9,7 +9,7 @@ using OpenFeature.Model;
 
 using Xunit;
 
-namespace FeatBit.OpenFeature.Provider.Tests;
+namespace FeatBit.OpenFeature.ServerProvider.Tests;
 
 public sealed class FeatBitProviderTests
 {

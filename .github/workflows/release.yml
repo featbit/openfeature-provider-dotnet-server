@@ -35,8 +35,8 @@ jobs:
           TAG: ${{ github.ref_name }}
         run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV
 
-      - name: Pack FeatBit.OpenFeature.Provider
-        run: dotnet pack ./src/FeatBit.OpenFeature.Provider/FeatBit.OpenFeature.Provider.csproj -c Release --no-restore --no-build --output ${VERSION} /p:PackageVersion=$VERSION
+      - name: Pack FeatBit.OpenFeature.ServerProvider
+        run: dotnet pack ./src/FeatBit.OpenFeature.ServerProvider/FeatBit.OpenFeature.ServerProvider.csproj -c Release --no-restore --no-build --output ${VERSION} /p:PackageVersion=$VERSION
 
       - name: Publish NuGet Package
         run: dotnet nuget push ${VERSION}/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate

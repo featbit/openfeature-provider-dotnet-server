@@ -4,7 +4,7 @@ using FeatBit.Sdk.Server.Model;
 
 using OpenFeature.Model;
 
-namespace FeatBit.OpenFeature.Provider;
+namespace FeatBit.OpenFeature.ServerProvider;
 
 internal static class EvaluationContextConversions
 {

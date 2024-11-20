@@ -3,7 +3,7 @@
 using OpenFeature.Constant;
 using OpenFeature.Model;
 
-namespace FeatBit.OpenFeature.Provider;
+namespace FeatBit.OpenFeature.ServerProvider;
 
 internal static class EvaluationResultConversions
 {

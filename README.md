@@ -10,10 +10,10 @@ management platform [FeatBit](https://github.com/featbit/featbit).
 
 ### Installation
 
-The latest stable version is available on [NuGet](https://www.nuget.org/packages/FeatBit.OpenFeature.Provider/).
+The latest stable version is available on [NuGet](https://www.nuget.org/packages/FeatBit.OpenFeature.ServerProvider/).
 
 ```sh
-dotnet add package FeatBit.OpenFeature.Provider
+dotnet add package FeatBit.OpenFeature.ServerProvider
 ```
 
 ### Prerequisite
@@ -27,10 +27,10 @@ Follow the documentation below to retrieve these values
 
 ### Quick Start
 
-The following code demonstrates basic usage of FeatBit.OpenFeature.Provider.
+The following code demonstrates basic usage of FeatBit.OpenFeature.ServerProvider.
 
 ```cs
-using FeatBit.OpenFeature.Provider;
+using FeatBit.OpenFeature.ServerProvider;
 using FeatBit.Sdk.Server;
 using FeatBit.Sdk.Server.Options;
 using OpenFeature;

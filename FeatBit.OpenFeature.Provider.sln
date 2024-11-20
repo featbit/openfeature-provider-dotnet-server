@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A7A8AEE6-0F7B-49A7-AC76-8971555327FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatBit.OpenFeature.Provider", "src\FeatBit.OpenFeature.Provider\FeatBit.OpenFeature.Provider.csproj", "{DD63DF41-0DA8-4A9D-B537-9B8B718A95BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatBit.OpenFeature.ServerProvider", "src\FeatBit.OpenFeature.ServerProvider\FeatBit.OpenFeature.ServerProvider.csproj", "{DD63DF41-0DA8-4A9D-B537-9B8B718A95BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E61A7333-C263-4246-B404-51DF118D5B71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatBit.OpenFeature.Provider.Tests", "tests\FeatBit.OpenFeature.Provider.Tests\FeatBit.OpenFeature.Provider.Tests.csproj", "{46BFD15B-03E7-49C1-BE57-3E9A3474B9F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatBit.OpenFeature.ServerProvider.Tests", "tests\FeatBit.OpenFeature.ServerProvider.Tests\FeatBit.OpenFeature.ServerProvider.Tests.csproj", "{46BFD15B-03E7-49C1-BE57-3E9A3474B9F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
