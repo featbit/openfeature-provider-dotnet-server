@@ -16,11 +16,13 @@ public sealed class FeatBitProvider : FeatureProvider
         _client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
+    /// <inheritdoc />
     public override Metadata GetMetadata()
     {
         return Metadata;
     }
 
+    /// <inheritdoc />
     public override Task<ResolutionDetails<bool>> ResolveBooleanValueAsync(
         string flagKey,
         bool defaultValue,
@@ -28,6 +30,7 @@ public sealed class FeatBitProvider : FeatureProvider
         CancellationToken cancellationToken = default)
         => Task.FromResult(ResolveCore(flagKey, defaultValue, context, ValueConverters.Bool));
 
+    /// <inheritdoc />
     public override Task<ResolutionDetails<double>> ResolveDoubleValueAsync(
         string flagKey,
         double defaultValue,
@@ -35,6 +38,7 @@ public sealed class FeatBitProvider : FeatureProvider
         CancellationToken cancellationToken = default)
         => Task.FromResult(ResolveCore(flagKey, defaultValue, context, ValueConverters.Double));
 
+    /// <inheritdoc />
     public override Task<ResolutionDetails<int>> ResolveIntegerValueAsync(
         string flagKey,
         int defaultValue,
@@ -42,6 +46,7 @@ public sealed class FeatBitProvider : FeatureProvider
         CancellationToken cancellationToken = default)
         => Task.FromResult(ResolveCore(flagKey, defaultValue, context, ValueConverters.Int));
 
+    /// <inheritdoc />
     public override Task<ResolutionDetails<string>> ResolveStringValueAsync(
         string flagKey,
         string defaultValue,
@@ -49,6 +54,7 @@ public sealed class FeatBitProvider : FeatureProvider
         CancellationToken cancellationToken = default)
         => Task.FromResult(ResolveCore(flagKey, defaultValue, context, ValueConverters.String));
 
+    /// <inheritdoc />
     public override Task<ResolutionDetails<Value>> ResolveStructureValueAsync(
         string flagKey,
         Value defaultValue,
