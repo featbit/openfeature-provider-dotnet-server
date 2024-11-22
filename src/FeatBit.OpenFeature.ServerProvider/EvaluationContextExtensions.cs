@@ -1,24 +1,25 @@
 using System.Globalization;
-
 using FeatBit.Sdk.Server.Model;
-
 using OpenFeature.Model;
 
 namespace FeatBit.OpenFeature.ServerProvider;
 
-internal static class EvaluationContextConversions
+internal static class EvaluationContextExtensions
 {
-    public static FbUser ToFbUser(this EvaluationContext? context)
+    public static FbUser AsFbUser(this EvaluationContext context)
     {
-        var builder = FbUser.Builder(context?.TargetingKey);
-        if (context is not null)
+        var builder = FbUser.Builder(context.TargetingKey);
+
+        foreach (var pair in context)
         {
-            foreach (var pair in context)
+            if (pair.Key == "targetingKey")
             {
-                if (pair.Key != "targetingKey" && TryGetFbValue(pair.Value, out var fbValue))
-                {
-                    builder.AddAttribute(pair.Key, fbValue);
-                }
+                continue;
+            }
+
+            if (TryGetFbValue(pair.Value, out var fbValue))
+            {
+                builder.AddAttribute(pair.Key, fbValue);
             }
         }
 
@@ -58,7 +59,7 @@ internal static class EvaluationContextConversions
                 return true;
 
             case Structure or IEnumerable<Value>:
-                result = JsonConversions.SerializeValue(value);
+                result = JsonConverters.SerializeValue(value);
                 return true;
 
             default:

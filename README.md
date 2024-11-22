@@ -1,4 +1,4 @@
-# FeatBit OpenFeature provider for the FeatBit .NET Server SDK
+# FeatBit OpenFeature Provider for .NET Server-Side SDK
 
 ## Introduction
 
