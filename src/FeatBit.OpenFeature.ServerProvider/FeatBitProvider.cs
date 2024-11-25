@@ -68,28 +68,6 @@ public sealed class FeatBitProvider : FeatureProvider
         EvaluationContext? context,
         ValueConverter<TValue> converter)
     {
-        if (context == null)
-        {
-            return new ResolutionDetails<TValue>(
-                flagKey: flagKey,
-                value: defaultValue,
-                reason: Reason.Error,
-                errorType: ErrorType.InvalidContext,
-                errorMessage: "Evaluation context is missing"
-            );
-        }
-
-        if (string.IsNullOrWhiteSpace(context.TargetingKey))
-        {
-            return new ResolutionDetails<TValue>(
-                flagKey: flagKey,
-                value: defaultValue,
-                reason: Reason.Error,
-                errorType: ErrorType.TargetingKeyMissing,
-                errorMessage: "Targeting key is missing"
-            );
-        }
-
         var user = context.AsFbUser();
         var detail = _client.StringVariationDetail(flagKey, user, null);
 

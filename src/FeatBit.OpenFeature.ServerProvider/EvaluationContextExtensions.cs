@@ -6,9 +6,16 @@ namespace FeatBit.OpenFeature.ServerProvider;
 
 internal static class EvaluationContextExtensions
 {
-    public static FbUser AsFbUser(this EvaluationContext context)
+    private static readonly FbUser EmptyFbUser = FbUser.Builder(string.Empty).Build();
+
+    public static FbUser AsFbUser(this EvaluationContext? context)
     {
-        var builder = FbUser.Builder(context.TargetingKey);
+        if (context is null)
+        {
+            return EmptyFbUser;
+        }
+
+        var builder = FbUser.Builder(context.TargetingKey ?? string.Empty);
 
         foreach (var pair in context)
         {
