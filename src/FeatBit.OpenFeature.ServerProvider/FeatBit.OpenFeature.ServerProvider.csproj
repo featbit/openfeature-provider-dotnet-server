@@ -49,4 +49,9 @@
     <InternalsVisibleTo Include="FeatBit.OpenFeature.ServerProvider.Tests"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="NuGet.md" Pack="true" PackagePath="\"/>
+    <None Include="icon.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
 </Project>
