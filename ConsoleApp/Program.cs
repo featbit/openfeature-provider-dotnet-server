@@ -5,11 +5,17 @@ using Microsoft.Extensions.Logging;
 using OpenFeature;
 using OpenFeature.Model;
 
+// Set secret to your FeatBit SDK secret.
+const string secret = "";
+if (string.IsNullOrWhiteSpace(secret))
+{
+    Console.WriteLine("Please edit Program.cs to set secret to your FeatBit SDK secret first. Exiting...");
+    Environment.Exit(1);
+}
+
 // setup SDK options
-var consoleLoggerFactory = LoggerFactory.Create(opt => opt.AddConsole().SetMinimumLevel(LogLevel.Debug));
-var options = new FbOptionsBuilder("Gg81S_N-HEybgVTcA6xnpQpb52_tWTZkaegJQvR5WOuw")
-    .Event(new Uri("http://localhost:5100"))
-    .Streaming(new Uri("ws://localhost:5100"))
+var consoleLoggerFactory = LoggerFactory.Create(opt => opt.AddConsole());
+var options = new FbOptionsBuilder(secret)
     .LoggerFactory(consoleLoggerFactory)
     .Build();
 
