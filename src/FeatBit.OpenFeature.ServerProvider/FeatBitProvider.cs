@@ -62,9 +62,6 @@ public sealed class FeatBitProvider : FeatureProvider
         CancellationToken cancellationToken = default)
         => Task.FromResult(ResolveCore(flagKey, defaultValue, context, ValueConverters.Value));
 
-    /// <inheritdoc />
-    public override Task ShutdownAsync(CancellationToken cancellationToken = default) => _client.CloseAsync();
-
     private ResolutionDetails<TValue> ResolveCore<TValue>(
         string flagKey,
         TValue defaultValue,

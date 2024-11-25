@@ -69,6 +69,9 @@ Console.WriteLine(
 
 // shut down OpenFeature
 await Api.Instance.ShutdownAsync();
+
+// close the client to ensure that all insights are sent out before the app exits
+await fbClient.CloseAsync();
 ```
 
 ## Getting support
