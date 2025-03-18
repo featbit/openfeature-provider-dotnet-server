@@ -21,6 +21,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Set Version Variable
+        env:
+          TAG: ${{ github.ref_name }}
+        run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV
+
       - name: Restore Packages
         run: dotnet restore
 
@@ -28,15 +33,10 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Run Tests
-        run: dotnet test -c Release --no-build --verbosity normal
-
-      - name: Set Version Variable
-        env:
-          TAG: ${{ github.ref_name }}
-        run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV
+        run: dotnet test -c Release --no-build --verbosity normal /p:Version=$VERSION
 
       - name: Pack FeatBit.OpenFeature.ServerProvider
-        run: dotnet pack ./src/FeatBit.OpenFeature.ServerProvider/FeatBit.OpenFeature.ServerProvider.csproj -c Release --no-restore --no-build --output ${VERSION} /p:PackageVersion=$VERSION
+        run: dotnet pack ./src/FeatBit.OpenFeature.ServerProvider/FeatBit.OpenFeature.ServerProvider.csproj -c Release --no-restore --no-build --output ${VERSION}
 
       - name: Publish NuGet Package
         run: dotnet nuget push ${VERSION}/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
