@@ -74,6 +74,10 @@ await Api.Instance.ShutdownAsync();
 await fbClient.CloseAsync();
 ```
 
+### Examples
+
+- [Console App](/examples/ConsoleApp/Program.cs)
+
 ## Getting support
 
 - If you have a specific question about using this sdk, we encourage you

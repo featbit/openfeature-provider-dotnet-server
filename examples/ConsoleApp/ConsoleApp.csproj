@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\FeatBit.OpenFeature.ServerProvider\FeatBit.OpenFeature.ServerProvider.csproj" />
+      <ProjectReference Include="..\..\src\FeatBit.OpenFeature.ServerProvider\FeatBit.OpenFeature.ServerProvider.csproj" />
     </ItemGroup>
 
     <ItemGroup>
