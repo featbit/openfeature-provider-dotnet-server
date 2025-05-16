@@ -62,6 +62,22 @@ public sealed class FeatBitProvider : FeatureProvider
         CancellationToken cancellationToken = default)
         => Task.FromResult(ResolveCore(flagKey, defaultValue, context, ValueConverters.Value));
 
+    public override void Track(
+        string trackingEventName,
+        EvaluationContext? evaluationContext = null,
+        TrackingEventDetails? trackingEventDetails = null)
+    {
+        var user = evaluationContext.AsFbUser();
+        if (trackingEventDetails?.Value is { } value)
+        {
+            _client.Track(user, trackingEventName, value);
+        }
+        else
+        {
+            _client.Track(user, trackingEventName);
+        }
+    }
+
     private ResolutionDetails<TValue> ResolveCore<TValue>(
         string flagKey,
         TValue defaultValue,

@@ -125,6 +125,52 @@ public sealed class FeatBitProviderTests
         Assert.Null(detail.Variant);
     }
 
+    [Fact]
+    public void TrackShouldCallFbClientTrackWithNameAndUser()
+    {
+        _subject.Track("test", Context);
+
+        _fbClient.Verify(c => c.Track(It.Is<FbUser>(u => u.Key == "test-key"), "test"), Times.Once);
+    }
+
+    [Fact]
+    public void TrackShouldCallFbClientTrackWithNameAndUserAndEmptyDetails()
+    {
+        var details = TrackingEventDetails.Empty;
+
+        _subject.Track("test", Context, details);
+
+        _fbClient.Verify(c => c.Track(It.Is<FbUser>(u => u.Key == "test-key"), "test"), Times.Once);
+    }
+
+    [Fact]
+    public void TrackShouldCallFbClientTrackWithNameAndUserAndValue()
+    {
+        var details = TrackingEventDetails.Builder().SetValue(1.2).Build();
+
+        _subject.Track("test", Context, details);
+
+        _fbClient.Verify(c => c.Track(It.Is<FbUser>(u => u.Key == "test-key"), "test", 1.2), Times.Once);
+    }
+
+    [Fact]
+    public void TrackShouldCallFbClientTrackWithNameAndValue()
+    {
+        var details = TrackingEventDetails.Builder().SetValue(1.2).Build();
+
+        _subject.Track("test", null, details);
+
+        _fbClient.Verify(c => c.Track(It.Is<FbUser>(u => u.Key == ""), "test", 1.2), Times.Once);
+    }
+
+    [Fact]
+    public void TrackShouldCallFbClientTrackWithNameOnly()
+    {
+        _subject.Track("test");
+
+        _fbClient.Verify(c => c.Track(It.Is<FbUser>(u => u.Key == ""), "test"), Times.Once);
+    }
+
     private void Setup(ReasonKind kind, string reason, string value)
     {
         _fbClient
