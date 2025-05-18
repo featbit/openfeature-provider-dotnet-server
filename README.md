@@ -67,6 +67,10 @@ Console.WriteLine(
     $"Reason: {boolVariationDetail.Reason}"
 );
 
+// optionally track the event with a metric for experimentation
+var trackingDetail = TrackingEventDetails.Builder().SetValue(1.0).Build();
+client.Track("games-run", context, trackingDetail);
+
 // shut down OpenFeature
 await Api.Instance.ShutdownAsync();
 
