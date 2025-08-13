@@ -17,7 +17,7 @@ public class EvalDetailTests
     [InlineData(ReasonKind.Fallthrough, "fall through targets and rules", ErrorType.None)]
     public void GetErrorType(ReasonKind kind, string reason, ErrorType expected)
     {
-        var detail = new EvalDetail<string>("key", kind, reason, "value");
+        var detail = new EvalDetail<string>("key", kind, reason, "value", "valueId");
 
         var actual = detail.GetErrorType();
         Assert.Equal(expected, actual);
@@ -34,7 +34,7 @@ public class EvalDetailTests
     [InlineData((ReasonKind)10, Reason.Unknown)]
     public void GetOpenFeatureReason(ReasonKind kind, string expected)
     {
-        var detail = new EvalDetail<string>("key", kind, "reason", "value");
+        var detail = new EvalDetail<string>("key", kind, "reason", "value", "valueId");
 
         var actual = detail.GetOpenFeatureReason();
         Assert.Equal(expected, actual);
