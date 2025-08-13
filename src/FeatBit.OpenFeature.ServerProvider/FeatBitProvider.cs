@@ -94,6 +94,7 @@ public sealed class FeatBitProvider : FeatureProvider
                 flagKey: flagKey,
                 value: defaultValue,
                 reason: detail.GetOpenFeatureReason(),
+                variant: null,
                 errorType: detail.GetErrorType(),
                 errorMessage: detail.Reason
             );
@@ -106,6 +107,7 @@ public sealed class FeatBitProvider : FeatureProvider
                 flagKey: flagKey,
                 value: defaultValue,
                 reason: Reason.Error,
+                variant: null,
                 errorType: ErrorType.TypeMismatch,
                 errorMessage: $"cannot convert value '{detail.Value}' to the desired type"
             );
@@ -117,9 +119,9 @@ public sealed class FeatBitProvider : FeatureProvider
             reason: detail.GetOpenFeatureReason(),
             errorType: ErrorType.None,
             errorMessage: null,
-            // FeatBit does not return the variation name, so use stringified value as OpenTelemetry suggests
-            // https://opentelemetry.io/docs/specs/semconv/feature-flags/feature-flags-spans/
-            variant: detail.Value
+            // FeatBit doesn't return the variation name, so use variation id
+            // https://opentelemetry.io/docs/specs/semconv/feature-flags/feature-flags-logs/
+            variant: detail.ValueId
         );
     }
 }

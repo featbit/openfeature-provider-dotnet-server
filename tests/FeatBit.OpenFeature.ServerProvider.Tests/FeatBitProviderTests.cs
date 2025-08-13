@@ -43,7 +43,7 @@ public sealed class FeatBitProviderTests
     [InlineData(ReasonKind.Error, "malformed flag", ErrorType.General)]
     public async Task ResolveStringError(ReasonKind kind, string reason, ErrorType expectedErrorType)
     {
-        Setup(kind, reason, "value");
+        Setup(kind, reason, "value", "value-id");
 
         var detail = await _subject.ResolveStringValueAsync("flag-key", "fallback-value-on-error", Context);
 
@@ -64,54 +64,56 @@ public sealed class FeatBitProviderTests
     [InlineData(ReasonKind.Fallthrough, "fall through targets and rules", Reason.Default)]
     public async Task ResolveStringSuccess(ReasonKind kind, string reason, string expectedReason)
     {
-        Setup(kind, reason, "value");
+        Setup(kind, reason, "value", "value-id");
 
         var detail = await _subject.ResolveStringValueAsync("flag-key", "fallback-value-on-error", Context);
 
         Assert.Equal("flag-key", detail.FlagKey);
         Assert.Equal("value", detail.Value);
+        Assert.Equal("value-id", detail.Variant);
         Assert.Equal(expectedReason, detail.Reason);
 
         Assert.Equal(ErrorType.None, detail.ErrorType);
         Assert.Null(detail.ErrorMessage);
-
-        Assert.Equal("value", detail.Variant);
     }
 
     [Fact]
     public async Task ResolveDouble()
     {
-        SetupValue("1.5");
+        SetupValue("1.5", "double-id");
 
         var detail = await _subject.ResolveDoubleValueAsync("flag-key", 0.5, Context);
         Assert.Equal(1.5, detail.Value);
+        Assert.Equal("double-id", detail.Variant);
     }
 
     [Fact]
     public async Task ResolveInteger()
     {
-        SetupValue("1");
+        SetupValue("1", "integer-id");
 
         var detail = await _subject.ResolveIntegerValueAsync("flag-key", -1, Context);
         Assert.Equal(1, detail.Value);
+        Assert.Equal("integer-id", detail.Variant);
     }
 
     [Fact]
     public async Task ResolveStructureValue()
     {
-        SetupValue("""["foo","bar"]""");
+        SetupValue("""["foo","bar"]""", "structure-id");
 
         var actual =
             await _subject.ResolveStructureValueAsync("flag-key", new Value("fallback-value-on-error"), Context);
         var expected = new Value([new Value("foo"), new Value("bar")]);
 
         Assert.Equal(expected, actual.Value, new ValueComparer());
+        Assert.Equal("structure-id", actual.Variant);
     }
 
     [Fact]
     public async Task ResolveTypeMismatchError()
     {
-        SetupValue("abc");
+        SetupValue("abc", "error-id");
 
         var detail = await _subject.ResolveDoubleValueAsync("flag-key", -1, Context);
 
@@ -171,12 +173,12 @@ public sealed class FeatBitProviderTests
         _fbClient.Verify(c => c.Track(It.Is<FbUser>(u => u.Key == ""), "test"), Times.Once);
     }
 
-    private void Setup(ReasonKind kind, string reason, string value)
+    private void Setup(ReasonKind kind, string reason, string value, string valueId)
     {
         _fbClient
             .Setup(client => client.StringVariationDetail("flag-key", It.IsAny<FbUser>(), null))
-            .Returns(new EvalDetail<string>("flag-key", kind, reason, value));
+            .Returns(new EvalDetail<string>("flag-key", kind, reason, value, valueId));
     }
 
-    private void SetupValue(string value) => Setup(ReasonKind.Fallthrough, "fall through targets and rules", value);
+    private void SetupValue(string value, string valueId) => Setup(ReasonKind.Fallthrough, "fall through targets and rules", value, valueId);
 }
