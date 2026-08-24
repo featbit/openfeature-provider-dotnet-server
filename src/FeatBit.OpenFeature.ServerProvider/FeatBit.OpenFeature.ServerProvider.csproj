@@ -15,11 +15,12 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/featbit/openfeature-provider-dotnet-server</PackageProjectUrl>
+    <PackageProjectUrl>https://www.featbit.co/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/featbit/openfeature-provider-dotnet-server</RepositoryUrl>
     <RepositoryBranch>main</RepositoryBranch>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageReadmeFile>NuGet.md</PackageReadmeFile>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageTags>featbit feature toggle featuretoggle continuous delivery featuremanagement feature-flags toggling OpenFeature</PackageTags>
@@ -36,8 +37,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FeatBit.ServerSdk" Version="1.2.11" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="FeatBit.ServerSdk" Version="2.0.0" />
     <PackageReference Include="OpenFeature" Version="2.8.1" />
   </ItemGroup>
 
