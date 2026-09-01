@@ -37,7 +37,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FeatBit.ServerSdk" Version="2.0.0" />
+    <PackageReference Include="FeatBit.ServerSdk" Version="2.0.1" />
     <PackageReference Include="OpenFeature" Version="2.8.1" />
   </ItemGroup>
 
