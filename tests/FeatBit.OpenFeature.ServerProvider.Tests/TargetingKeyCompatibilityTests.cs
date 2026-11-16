@@ -22,11 +22,14 @@ public sealed class TargetingKeyCompatibilityTests
               "data": {
                 "eventType": "full",
                 "featureFlags": [{
-                  "id": "174c7138-426d-4434-8a91-af8c00306de3", "key": "test-flag", "isEnabled": false,
+                  "id": "174c7138-426d-4434-8a91-af8c00306de3",
+                  "key": "test-flag",
+                  "isEnabled": false,
                   "variationType": "boolean",
-                  "variations": [{ "id": "on", "value": "true" }],
-                  "disabledVariationId": "on",
-                  "targetUsers": [], "rules": []
+                  "variations": [{ "id": "on", "value": "true" }, { "id": "off", "value": "false" }],
+                  "disabledVariationId": "off",
+                  "targetUsers": [],
+                  "rules": []
                 }],
                 "segments": []
               }
@@ -38,16 +41,17 @@ public sealed class TargetingKeyCompatibilityTests
             .Build());
         try
         {
+            var provider = new FeatBitProvider(client);
+
             var context = targetingKey switch
             {
                 null => null,
                 "missing" => EvaluationContext.Builder().Build(),
                 _ => EvaluationContext.Builder().SetTargetingKey(targetingKey).Build()
             };
-            var provider = new FeatBitProvider(client);
-            var result = await provider.ResolveBooleanValueAsync("test-flag", false, context);
+            var result = await provider.ResolveBooleanValueAsync("test-flag", true, context);
 
-            Assert.True(result.Value);
+            Assert.False(result.Value);
             Assert.Equal(ErrorType.None, result.ErrorType);
             Assert.Equal(Reason.Disabled, result.Reason);
         }
